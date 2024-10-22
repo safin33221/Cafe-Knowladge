@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Blog from '../Blog/Blog';
-const Blogs = () => {
+const Blogs = ({handleAddToBookmark}) => {
     const [blogs,setBlogs] = useState([])
     useEffect(()=>{
     fetch('blogs.json')
@@ -10,8 +11,8 @@ const Blogs = () => {
     .then(data =>setBlogs(data))
   },[])
     return (
-        <div>
-            {blogs.map(blog=><Blog key={blog.id} blog={blog}></Blog>)}
+        <div className='w-2/3'>
+            {blogs.map(blog=><Blog key={blog.id} blog={blog} handleAddToBookmark={handleAddToBookmark}></Blog>)}
         </div>
     );
 };
