@@ -3,8 +3,8 @@
 
 import { FaRegBookmark } from "react-icons/fa6";
 
-const Blog = ({ blog,handleAddToBookmark }) => {
-    const { title, cover, author_img, author, posted_date, reading_time,hashtags } = blog
+const Blog = ({ blog,handleAddToBookmark,handleMakeAsRead }) => {
+    const { title, cover, author_img, author, posted_date, reading_time,hashtags,id } = blog
     
     
     return (
@@ -23,7 +23,7 @@ const Blog = ({ blog,handleAddToBookmark }) => {
                     </div>
                 </div>
                 <div className="flex gap-3">
-                    <h3 className="text-xl">{reading_time}</h3>
+                    <h3 className="text-xl">{reading_time} min read</h3>
                     <button onClick={()=>handleAddToBookmark(blog)}><FaRegBookmark /></button>
 
 
@@ -37,6 +37,7 @@ const Blog = ({ blog,handleAddToBookmark }) => {
                     hashtags.map((hash,idx) => <span key={idx}><a>#{hash}</a></span>)
                 }
             </p>
+            <button className="text-purple-800 font-bold underline" onClick={()=> handleMakeAsRead(reading_time,id)}>Mark As Read</button>
         </div>
     );
 };

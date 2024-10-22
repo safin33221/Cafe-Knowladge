@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Blog from '../Blog/Blog';
-const Blogs = ({handleAddToBookmark}) => {
+
+const Blogs = ({handleAddToBookmark,handleMakeAsRead}) => {
     const [blogs,setBlogs] = useState([])
     useEffect(()=>{
     fetch('blogs.json')
@@ -12,7 +13,12 @@ const Blogs = ({handleAddToBookmark}) => {
   },[])
     return (
         <div className='w-2/3'>
-            {blogs.map(blog=><Blog key={blog.id} blog={blog} handleAddToBookmark={handleAddToBookmark}></Blog>)}
+            {blogs.map(blog=><Blog
+             key={blog.id}
+              blog={blog}
+               handleAddToBookmark={handleAddToBookmark}
+               handleMakeAsRead={handleMakeAsRead}
+               ></Blog>)}
         </div>
     );
 };
